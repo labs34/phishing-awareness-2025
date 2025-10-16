@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Congratulations! You've Won!</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(0,0,0,0.7);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 { font-size: 2.5em; margin-bottom: 20px; }
+        .message { 
+            font-size: 1.5em; 
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        .warning {
+            background: #ff4444;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Congratulations! 🎉</h1>
+        
+        <div class="message" id="randomMessage">
+            <!-- Random message will appear here -->
+        </div>
+        
+        <div class="warning">
+            ⚠️ THIS WAS A SECURITY TEST ⚠️<br>
+            You just fell for a simulated phishing attack!
+        </div>
+        
+        <p><strong>Lesson Learned:</strong> If it seems too good to be true, it probably is!</p>
+        
+        <a href="https://chat.whatsapp.com/FXy6zubqZDA3yBg4oU4k30" class="whatsapp-btn" target="_blank">
+            📱 Join Our Security Awareness Community
+        </a>
+        
+        <p><small>This is part of our 2025 Cybersecurity Awareness Campaign</small></p>
+    </div>
+
+    <script>
+        // Array of phishing awareness messages
+        const messages = [
+            "You really fell for a free iPhone? In 2025? Oh honey...",
+            "Congratulations! You've won... a valuable security lesson!",
+            "Scan first, think later? Welcome to Phishing 101!",
+            "If you believed this, you might believe I'm a Nigerian prince!",
+            "You clicked, we tricked! Time for some security training!",
+            "Free iPhone? More like free security awareness training!",
+            "You've been phished! But don't worry, it's just practice!",
+            "This QR code was harmless, but the next one might not be!",
+            "You're really falling for it in the great 2025! Security matters!",
+            "Scanning random QR codes? Your digital safety just called - it wants a word!"
+        ];
+
+        // Select random message
+        function getRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        }
+
+        // Display random message when page loads
+        document.getElementById('randomMessage').textContent = getRandomMessage();
+    </script>
+</body>
+</html>
