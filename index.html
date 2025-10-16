@@ -1,90 +1,257 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Congratulations! You've Won!</title>
+    <title>semicolon; security alert</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+        
         body { 
-            font-family: Arial, sans-serif; 
+            font-family: 'Exo 2', sans-serif; 
             text-align: center; 
-            padding: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .container {
-            background: rgba(0,0,0,0.7);
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        h1 { font-size: 2.5em; margin-bottom: 20px; }
-        .message { 
-            font-size: 1.5em; 
-            margin: 30px 0;
             padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
+            background: #0a0a1f;
+            color: #e0e0ff;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        .warning {
-            background: #ff4444;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
+        
+        /* Animated gradient background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #0a0a1f, #1a1a3f, #2d1b69, #4a1c7a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background: rgba(16, 16, 48, 0.85);
+            padding: 40px 30px;
+            border-radius: 20px;
+            max-width: 700px;
+            margin: 40px auto;
+            border: 1px solid #4a1c7a;
+            box-shadow: 0 0 50px rgba(106, 13, 173, 0.3),
+                        inset 0 0 30px rgba(74, 28, 122, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Futuristic glowing border */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff00cc);
+            background-size: 400% 400%;
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderGlow 8s ease infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 3em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+        
+        .logo::after {
+            content: ';';
+            color: #06b6d4;
+            text-shadow: 0 0 20px #06b6d4;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2em;
+            background: linear-gradient(135deg, #c4b5fd, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 20px 0;
-            font-weight: bold;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
+        
+        .message-container {
+            background: rgba(30, 30, 60, 0.6);
+            border: 1px solid #4f46e5;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+        }
+        
+        .message {
+            font-size: 1.4em;
+            line-height: 1.5;
+            color: #c7d2fe;
+            font-weight: 300;
+            text-shadow: 0 0 10px rgba(199, 210, 254, 0.3);
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #dc2626, #7c2d12);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            font-weight: 600;
+            border: 1px solid #f87171;
+            box-shadow: 0 0 25px rgba(220, 38, 38, 0.4);
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1em;
+        }
+        
+        .lesson {
+            background: rgba(55, 65, 81, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #06b6d4;
+            font-size: 1.1em;
+        }
+        
         .whatsapp-btn {
             display: inline-block;
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 15px 30px;
+            padding: 18px 35px;
             text-decoration: none;
-            border-radius: 25px;
-            font-size: 1.2em;
-            margin: 20px 0;
-            transition: transform 0.3s;
+            border-radius: 30px;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 25px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
+            border: 1px solid #90f0b3;
+            font-family: 'Exo 2', sans-serif;
         }
+        
         .whatsapp-btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 35px rgba(37, 211, 102, 0.6);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #9ca3af;
+            opacity: 0.8;
+        }
+        
+        /* Floating particles for futuristic effect */
+        .particle {
+            position: absolute;
+            background: rgba(96, 165, 250, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+            animation: scan 3s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    
+    <!-- Floating particles -->
+    <div id="particles-container"></div>
+    
     <div class="container">
-        <h1>🎉 Congratulations! 🎉</h1>
+        <div class="scan-line"></div>
         
-        <div class="message" id="randomMessage">
-            <!-- Random message will appear here -->
+        <div class="logo">semicolon security</div>
+        
+        <h1>🚨 SECURITY BREACH DETECTED 🚨</h1>
+        
+        <div class="message-container">
+            <div class="message" id="randomMessage">
+                <!-- Random message will appear here -->
+            </div>
         </div>
         
-        <div class="warning">
-            ⚠️ THIS WAS A SECURITY TEST ⚠️<br>
-            You just fell for a simulated phishing attack!
+        <div class="warning pulse">
+            ⚠️ CYBERSECURITY ALERT ⚠️<br>
+            SIMULATED PHISHING ATTACK SUCCESSFUL
         </div>
         
-        <p><strong>Lesson Learned:</strong> If it seems too good to be true, it probably is!</p>
+        <div class="lesson">
+            <strong>semicolon; security insight:</strong><br>
+            You just demonstrated why we never trust unsolicited QR codes or "too good to be true" offers.
+        </div>
         
         <a href="https://chat.whatsapp.com/FXy6zubqZDA3yBg4oU4k30" class="whatsapp-btn" target="_blank">
-            📱 Join Our Security Awareness Community
+            🔐 Join semicolon; Security Community
         </a>
         
-        <p><small>This is part of our 2025 Cybersecurity Awareness Campaign</small></p>
+        <div class="footer">
+            semicolon; security awareness initiative 2025 • think before you click
+        </div>
     </div>
 
     <script>
-        // Array of phishing awareness messages
+        // Array of futuristic phishing awareness messages
         const messages = [
-            "You really fell for a free iPhone? In 2025? Oh honey...",
-            "Congratulations! You've won... a valuable security lesson!",
-            "Scan first, think later? Welcome to Phishing 101!",
-            "If you believed this, you might believe I'm a Nigerian prince!",
-            "You clicked, we tricked! Time for some security training!",
-            "Free iPhone? More like free security awareness training!",
-            "You've been phished! But don't worry, it's just practice!",
-            "This QR code was harmless, but the next one might not be!",
-            "You're really falling for it in the great 2025! Security matters!",
-            "Scanning random QR codes? Your digital safety just called - it wants a word!"
+            "You really fell for a free iPhone? In the quantum age of 2025? Oh honey...",
+            "Congratulations! You've successfully breached our simulated security perimeter!",
+            "Scan first, think later? Your digital footprint just screamed for help!",
+            "If you believed this, our firewall would like a word with your judgment!",
+            "Access granted to: Valuable Security Lesson 101. Password: ThinkTwice!",
+            "Free iPhone? More like free entry to our security awareness training program!",
+            "Breach detected! User: You | Vulnerability: QR curiosity | Status: Compromised",
+            "This QR code was a drill, but the next one might be the real cyber-threat!",
+            "You're really falling for the oldest tricks in the great firewall of 2025!",
+            "Scanning unauthorized codes? Our security AI just facepalmed digitally!"
         ];
 
         // Select random message
@@ -93,8 +260,41 @@
             return messages[randomIndex];
         }
 
-        // Display random message when page loads
-        document.getElementById('randomMessage').textContent = getRandomMessage();
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.background = `rgba(${Math.random() * 100 + 100}, ${Math.random() * 100 + 150}, 255, ${Math.random() * 0.3 + 0.1})`;
+                particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+                container.appendChild(particle);
+            }
+        }
+
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translate(0, 0) rotate(0deg); }
+                25% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(90deg); }
+                50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(180deg); }
+                75% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(270deg); }
+                100% { transform: translate(0, 0) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('randomMessage').textContent = getRandomMessage();
+            createParticles();
+        });
     </script>
 </body>
 </html>
