@@ -1,251 +1,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>usek cyber community alert</title>
+    <title>You've Been Scammed - USEK Cyber Community</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
-        
-        body { 
-            font-family: 'Exo 2', sans-serif; 
-            text-align: center; 
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
             padding: 20px;
-            background: #0a0a1f;
-            color: #e0e0ff;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Animated gradient background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(-45deg, #0a0a1f, #1a1a3f, #2d1b69, #4a1c7a);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -2;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background-color: #f0f0f0;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .container {
-            background: rgba(16, 16, 48, 0.85);
-            padding: 40px 30px;
-            border-radius: 20px;
-            max-width: 700px;
-            margin: 40px auto;
-            border: 1px solid #4a1c7a;
-            box-shadow: 0 0 50px rgba(106, 13, 173, 0.3),
-                        inset 0 0 30px rgba(74, 28, 122, 0.2);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 3px solid #dc2626;
         }
         
-        /* Futuristic glowing border */
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff00cc);
-            background-size: 400% 400%;
-            border-radius: 22px;
-            z-index: -1;
-            animation: borderGlow 8s ease infinite;
-            opacity: 0.7;
+        .header {
+            color: #dc2626;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
         
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 3em;
-            font-weight: 900;
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-        }
-        
-        h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.2em;
-            background: linear-gradient(135deg, #c4b5fd, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .subheader {
+            color: #7c2d12;
+            font-size: 1.8em;
+            font-weight: bold;
             margin: 20px 0;
-            text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
         
-        .message-container {
-            background: rgba(30, 30, 60, 0.6);
-            border: 1px solid #4f46e5;
-            border-radius: 15px;
+        .usek-brand {
+            background: #1e40af;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .message-box {
+            background: #fef2f2;
+            border: 2px dashed #dc2626;
             padding: 25px;
-            margin: 30px 0;
-            position: relative;
-            box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
-        }
-        
-        .message {
-            font-size: 1.4em;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-size: 1.3em;
             line-height: 1.5;
-            color: #c7d2fe;
-            font-weight: 300;
-            text-shadow: 0 0 10px rgba(199, 210, 254, 0.3);
         }
         
         .warning {
-            background: linear-gradient(135deg, #dc2626, #7c2d12);
+            background: #dc2626;
             color: white;
             padding: 20px;
-            border-radius: 12px;
-            margin: 25px 0;
-            font-weight: 600;
-            border: 1px solid #f87171;
-            box-shadow: 0 0 25px rgba(220, 38, 38, 0.4);
-            font-family: 'Orbitron', monospace;
-            font-size: 1.1em;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px 0;
         }
         
         .lesson {
-            background: rgba(55, 65, 81, 0.6);
+            background: #dbeafe;
+            border-left: 5px solid #1e40af;
             padding: 20px;
-            border-radius: 12px;
             margin: 20px 0;
-            border-left: 4px solid #06b6d4;
+            text-align: left;
             font-size: 1.1em;
         }
         
         .whatsapp-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #25D366, #128C7E);
+            background: #25D366;
             color: white;
-            padding: 18px 35px;
+            padding: 15px 30px;
             text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.3em;
-            font-weight: 600;
-            margin: 25px 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
-            border: 1px solid #90f0b3;
-            font-family: 'Exo 2', sans-serif;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 20px 0;
+            border: 2px solid #128C7E;
         }
         
         .whatsapp-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 35px rgba(37, 211, 102, 0.6);
+            background: #128C7E;
         }
         
         .footer {
             margin-top: 30px;
+            color: #666;
             font-size: 0.9em;
-            color: #9ca3af;
-            opacity: 0.8;
         }
         
-        /* Floating particles for futuristic effect */
-        .particle {
-            position: absolute;
-            background: rgba(96, 165, 250, 0.3);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
-            animation: scan 3s linear infinite;
-            opacity: 0.7;
-        }
-        
-        @keyframes scan {
-            0% { top: 0; }
-            100% { top: 100%; }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        .emoji {
+            font-size: 2em;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    
-    <!-- Floating particles -->
-    <div id="particles-container"></div>
-    
     <div class="container">
-        <div class="scan-line"></div>
+        <div class="header">🚨 YOU'VE BEEN SCAMMED! 🚨</div>
         
-        <div class="logo">USEK CYBER COMMUNITY</div>
+        <div class="usek-brand">
+            USEK CYBER COMMUNITY SECURITY TEST
+        </div>
         
-        <h1>🚨 SECURITY BREACH DETECTED 🚨</h1>
+        <div class="subheader">
+            This was a simulated phishing attack!
+        </div>
         
-        <div class="message-container">
-            <div class="message" id="randomMessage">
+        <div class="message-box">
+            <div id="randomMessage">
                 <!-- Random message will appear here -->
             </div>
         </div>
         
-        <div class="warning pulse">
-            ⚠️ CYBERSECURITY ALERT ⚠️<br>
-            SIMULATED PHISHING ATTACK SUCCESSFUL
+        <div class="warning">
+            ⚠️ SECURITY ALERT ⚠️<br>
+            You fell for a fake QR code scam!
         </div>
         
         <div class="lesson">
-            <strong>USEK Cyber Community insight:</strong><br>
-            You just demonstrated why we never trust unsolicited QR codes or "too good to be true" offers.
+            <strong>What just happened?</strong><br>
+            • You scanned a QR code that promised something "free"<br>
+            • In real life, this could have stolen your data<br>
+            • You entered personal information or downloaded malware<br>
+            • Always verify before clicking links or scanning codes!
         </div>
         
-        <a href="https://chat.whatsapp.com/FXy6zubqZDA3yBg4oU4k30" class="whatsapp-btn" target="_blank">
-            🔐 Join USEK Cyber Community
+        <div class="emoji">👇</div>
+        
+        <a href="https://chat.whatsapp.com/YOUR_COMMUNITY_LINK" class="whatsapp-btn">
+            Join USEK Cyber Community for Security Tips
         </a>
         
         <div class="footer">
-            USEK Cyber Community Awareness Initiative 2025 • Think Before You Click
+            USEK Cyber Community Phishing Awareness Campaign 2025<br>
+            Remember: If it seems too good to be true, it probably is!
         </div>
     </div>
 
     <script>
-        // Array of futuristic phishing awareness messages
+        // Array of straightforward scam awareness messages
         const messages = [
-            "You really fell for a free iPhone? In the quantum age of 2025? Oh honey...",
-            "Congratulations! You've successfully breached our simulated security perimeter!",
-            "Scan first, think later? Your digital footprint just screamed for help!",
-            "If you believed this, our firewall would like a word with your judgment!",
-            "Access granted to: Valuable Security Lesson 101. Password: ThinkTwice!",
-            "Free iPhone? More like free entry to our security awareness training program!",
-            "Breach detected! User: You | Vulnerability: QR curiosity | Status: Compromised",
-            "This QR code was a drill, but the next one might be the real cyber-threat!",
-            "You're really falling for the oldest tricks in the great firewall of 2025!",
-            "Scanning unauthorized codes? Our security AI just facepalmed digitally!"
+            "You really thought you'd get a free iPhone? This was a security test!",
+            "Congratulations! You just failed our phishing awareness test!",
+            "You scanned without thinking? That's how people get hacked!",
+            "If you believed this, you'd believe anything! Time for security training!",
+            "Free iPhone? More like free security lesson from USEK Cyber Community!",
+            "You've been phished! This was a simulated attack to teach you a lesson!",
+            "This QR code was fake, but your reaction was very real! Be more careful!",
+            "You fell for it! In 2025, scams look exactly like this! Stay alert!",
+            "Scanning random QR codes? You're a hacker's dream target!",
+            "You clicked, we tricked! Welcome to your cybersecurity wake-up call!"
         ];
 
         // Select random message
@@ -254,40 +167,9 @@
             return messages[randomIndex];
         }
 
-        // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('particles-container');
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 6 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.top = `${Math.random() * 100}vh`;
-                particle.style.background = `rgba(${Math.random() * 100 + 100}, ${Math.random() * 100 + 150}, 255, ${Math.random() * 0.3 + 0.1})`;
-                particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
-                container.appendChild(particle);
-            }
-        }
-
-        // Add floating animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0% { transform: translate(0, 0) rotate(0deg); }
-                25% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(90deg); }
-                50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(180deg); }
-                75% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(270deg); }
-                100% { transform: translate(0, 0) rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Initialize
+        // Display random message when page loads
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('randomMessage').textContent = getRandomMessage();
-            createParticles();
         });
     </script>
 </body>
