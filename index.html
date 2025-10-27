@@ -18,6 +18,7 @@
             padding: 30px;
             border: 5px solid #ff0000;
             border-radius: 0px;
+            position: relative;
         }
         
         .header {
@@ -95,9 +96,67 @@
             padding: 15px;
             border: 2px solid #000000;
         }
+        
+        /* Admin Panel Styles */
+        .admin-panel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #000000;
+            color: #00ff00;
+            padding: 15px;
+            border: 3px solid #00ff00;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            z-index: 1000;
+        }
+        
+        .admin-btn {
+            background: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 8px 15px;
+            margin: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .admin-btn:hover {
+            background: #ffff00;
+        }
+        
+        .admin-hidden {
+            display: none;
+        }
+        
+        .admin-toggle {
+            background: #0000ff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <button class="admin-toggle" onclick="toggleAdmin()">ADMIN PANEL ▼</button>
+        <div id="adminContent">
+            <h3>USEK SCAM STATS</h3>
+            <div>Total Victims: <strong id="adminCounter">0</strong></div>
+            <button class="admin-btn" onclick="resetCounter()">RESET COUNTER</button>
+            <button class="admin-btn" onclick="refreshCounter()">REFRESH</button>
+            <button class="admin-btn" onclick="exportData()">EXPORT DATA</button>
+            <div style="margin-top: 10px; font-size: 0.8em;">
+                <div>Page Views: <span id="pageViews">0</span></div>
+                <div>Last Reset: <span id="lastReset">Never</span></div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="header">⚠️ YOU GOT SCAMMED! ⚠️</div>
         
@@ -175,16 +234,88 @@
             // Save the new count
             localStorage.setItem('usekScamVictims', count);
             
+            // Update page views
+            updatePageViews();
+            
             // Display the count
             document.getElementById('victimCounter').textContent = count;
+            document.getElementById('adminCounter').textContent = count;
             
             return count;
         }
 
-        // Display random message and update counter when page loads
+        // Page views counter
+        function updatePageViews() {
+            let views = localStorage.getItem('usekPageViews');
+            if (views === null) {
+                views = 0;
+            } else {
+                views = parseInt(views);
+            }
+            views++;
+            localStorage.setItem('usekPageViews', views);
+            document.getElementById('pageViews').textContent = views;
+        }
+
+        // Admin functions
+        function resetCounter() {
+            if (confirm('Are you sure you want to reset the victim counter to 0?')) {
+                localStorage.setItem('usekScamVictims', 0);
+                localStorage.setItem('lastReset', new Date().toLocaleString());
+                refreshCounter();
+                document.getElementById('lastReset').textContent = new Date().toLocaleString();
+            }
+        }
+
+        function refreshCounter() {
+            let count = localStorage.getItem('usekScamVictims');
+            if (count === null) count = 0;
+            document.getElementById('victimCounter').textContent = count;
+            document.getElementById('adminCounter').textContent = count;
+            
+            let views = localStorage.getItem('usekPageViews');
+            if (views === null) views = 0;
+            document.getElementById('pageViews').textContent = views;
+            
+            let lastReset = localStorage.getItem('lastReset');
+            document.getElementById('lastReset').textContent = lastReset || 'Never';
+        }
+
+        function exportData() {
+            const data = {
+                victims: localStorage.getItem('usekScamVictims') || 0,
+                pageViews: localStorage.getItem('usekPageViews') || 0,
+                lastReset: localStorage.getItem('lastReset') || 'Never',
+                exportTime: new Date().toLocaleString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'usek_scam_stats.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function toggleAdmin() {
+            const adminContent = document.getElementById('adminContent');
+            const toggleBtn = document.querySelector('.admin-toggle');
+            if (adminContent.classList.contains('admin-hidden')) {
+                adminContent.classList.remove('admin-hidden');
+                toggleBtn.innerHTML = 'ADMIN PANEL ▲';
+            } else {
+                adminContent.classList.add('admin-hidden');
+                toggleBtn.innerHTML = 'ADMIN PANEL ▼';
+            }
+        }
+
+        // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('randomMessage').textContent = getRandomMessage();
             updateCounter();
+            refreshCounter();
         });
     </script>
 </body>
