@@ -37,6 +37,16 @@
             margin: 20px 0;
         }
         
+        .counter {
+            background: #0000ff;
+            color: #ffffff;
+            padding: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+            border: 3px solid #000000;
+        }
+        
         .message-box {
             background: #ffffff;
             border: 3px solid #000000;
@@ -95,6 +105,10 @@
             USEK CYBER COMMUNITY SECURITY TEST
         </div>
         
+        <div class="counter">
+            🎯 VICTIM COUNT: <span id="victimCounter">Loading...</span>
+        </div>
+        
         <div class="message-box">
             <div id="randomMessage">
                 <!-- Random message will appear here -->
@@ -145,9 +159,32 @@
             return messages[randomIndex];
         }
 
-        // Display random message when page loads
+        // Counter functionality using localStorage
+        function updateCounter() {
+            // Get current count from localStorage or start at 0
+            let count = localStorage.getItem('usekScamVictims');
+            if (count === null) {
+                count = 0;
+            } else {
+                count = parseInt(count);
+            }
+            
+            // Increment the count
+            count++;
+            
+            // Save the new count
+            localStorage.setItem('usekScamVictims', count);
+            
+            // Display the count
+            document.getElementById('victimCounter').textContent = count;
+            
+            return count;
+        }
+
+        // Display random message and update counter when page loads
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('randomMessage').textContent = getRandomMessage();
+            updateCounter();
         });
     </script>
 </body>
